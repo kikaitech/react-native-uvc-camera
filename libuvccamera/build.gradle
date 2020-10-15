@@ -26,7 +26,7 @@ import org.apache.tools.ant.taskdefs.condition.Os
 
 android {
 	compileSdkVersion versionCompiler
-	buildToolsVersion versionBuildTool
+	ndkVersion '16.1.4479499'
 
 	compileOptions {
 		sourceCompatibility javaSourceCompatibility

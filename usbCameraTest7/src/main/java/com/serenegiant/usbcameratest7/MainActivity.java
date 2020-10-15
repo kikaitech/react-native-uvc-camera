@@ -144,7 +144,7 @@ public final class MainActivity extends BaseActivity implements CameraDialog.Cam
 			case R.id.camera_view_L:
 				if (mHandlerL != null) {
 					if (!mHandlerL.isOpened()) {
-						CameraDialog.showDialog(MainActivity.this);
+						CameraDialog.showDialog(MainActivity.this, mUSBMonitor);
 					} else {
 						mHandlerL.close();
 						setCameraButton();
@@ -169,7 +169,7 @@ public final class MainActivity extends BaseActivity implements CameraDialog.Cam
 			case R.id.camera_view_R:
 				if (mHandlerR != null) {
 					if (!mHandlerR.isOpened()) {
-						CameraDialog.showDialog(MainActivity.this);
+						CameraDialog.showDialog(MainActivity.this, mUSBMonitor);
 					} else {
 						mHandlerR.close();
 						setCameraButton();

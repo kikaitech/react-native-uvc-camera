@@ -195,7 +195,7 @@ public final class MainActivity extends BaseActivity implements CameraDialog.Cam
 			case R.id.camera_button:
 				synchronized (mSync) {
 					if (isChecked && (mCameraHandler != null) && !mCameraHandler.isOpened()) {
-						CameraDialog.showDialog(MainActivity.this);
+						CameraDialog.showDialog(MainActivity.this, mUSBMonitor);
 					} else {
 						mCameraHandler.close();
 						setCameraButton(false);
@@ -331,7 +331,7 @@ public final class MainActivity extends BaseActivity implements CameraDialog.Cam
 	private final CameraViewInterface.Callback
 		mCallback = new CameraViewInterface.Callback() {
 		@Override
-		public void onSurfaceCreated(final CameraViewInterface view, final Surface surface) {
+		public void onSurfaceCreated(final CameraViewInterface view, final Surface surface, int width, int height) {
 			mCameraHandler.addSurface(surface.hashCode(), surface, false);
 		}
 

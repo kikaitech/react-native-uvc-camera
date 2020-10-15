@@ -147,7 +147,7 @@ public final class MainActivity extends BaseActivity implements CameraDialog.Cam
 		public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
 			synchronized (mSync) {
 				if (isChecked && mUVCCamera == null) {
-					CameraDialog.showDialog(MainActivity.this);
+					CameraDialog.showDialog(MainActivity.this, mUSBMonitor);
 				} else if (mUVCCamera != null) {
 					mUVCCamera.destroy();
 					mUVCCamera = null;

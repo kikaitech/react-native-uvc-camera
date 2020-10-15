@@ -116,7 +116,7 @@ public final class MainActivity extends BaseActivity implements CameraDialog.Cam
 		public void onClick(final View view) {
 			synchronized (mSync) {
 				if (mUVCCamera == null) {
-					CameraDialog.showDialog(MainActivity.this);
+					CameraDialog.showDialog(MainActivity.this, mUSBMonitor);
 				} else {
 					releaseCamera();
 				}

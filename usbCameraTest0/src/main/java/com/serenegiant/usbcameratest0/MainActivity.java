@@ -114,7 +114,7 @@ public class MainActivity extends BaseActivity implements CameraDialog.CameraDia
 		public void onClick(final View view) {
 			if (mUVCCamera == null) {
 				// XXX calling CameraDialog.showDialog is necessary at only first time(only when app has no permission).
-				CameraDialog.showDialog(MainActivity.this);
+				CameraDialog.showDialog(MainActivity.this, mUSBMonitor);
 			} else {
 				synchronized (mSync) {
 					mUVCCamera.destroy();
