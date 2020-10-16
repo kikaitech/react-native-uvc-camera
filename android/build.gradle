@@ -8,28 +8,30 @@ buildscript {
   }
 
   dependencies {
-    classpath 'com.android.tools.build:gradle:3.0.0'
+    classpath 'com.android.tools.build:gradle:4.1.0'
   }
 }
 
 apply plugin: 'com.android.library'
 
-def DEFAULT_COMPILE_SDK_VERSION             = 26
-def DEFAULT_BUILD_TOOLS_VERSION             = "26.0.2"
-def DEFAULT_TARGET_SDK_VERSION              = 26
-def DEFAULT_GOOGLE_PLAY_SERVICES_VERSION    = "12.0.1"
-def DEFAULT_SUPPORT_LIBRARY_VERSION         = "27.1.0"
+def DEFAULT_COMPILE_SDK_VERSION             = 28
+def DEFAULT_BUILD_TOOLS_VERSION             = "28.0.3"
+def DEFAULT_TARGET_SDK_VERSION              = 28
+def DEFAULT_GOOGLE_PLAY_SERVICES_VERSION    = "18.0.0"
+def DEFAULT_SUPPORT_LIBRARY_VERSION         = "28.0.0"
+def DEFAULT_COMMONLIB_VERSION               = "2.12.4"
 
 android {
   compileSdkVersion rootProject.hasProperty('compileSdkVersion') ? rootProject.compileSdkVersion : DEFAULT_COMPILE_SDK_VERSION
-  buildToolsVersion rootProject.hasProperty('buildToolsVersion') ? rootProject.buildToolsVersion : DEFAULT_BUILD_TOOLS_VERSION
 
   defaultConfig {
     minSdkVersion 16
     targetSdkVersion rootProject.hasProperty('targetSdkVersion') ? rootProject.targetSdkVersion : DEFAULT_TARGET_SDK_VERSION
 
     versionCode 1
-    versionName "1.0.0"
+    versionName "1.1.0"
+
+    missingDimensionStrategy 'react-native-camera', 'general'
   }
   lintOptions {
     abortOnError false
@@ -38,6 +40,8 @@ android {
 }
 
 repositories {
+  google()
+  jcenter()
   mavenCentral()
   maven {
    url 'https://maven.google.com'
@@ -54,7 +58,7 @@ dependencies {
   def googlePlayServicesVersion = rootProject.hasProperty('googlePlayServicesVersion')  ? rootProject.googlePlayServicesVersion : DEFAULT_GOOGLE_PLAY_SERVICES_VERSION
   def supportLibVersion = rootProject.hasProperty('supportLibVersion')  ? rootProject.supportLibVersion : DEFAULT_SUPPORT_LIBRARY_VERSION
 
-  compileOnly ('com.facebook.react:react-native:0.51.0') { force = true }
+  compileOnly ('com.facebook.react:react-native:0.63.2') { force = true }
   // compileOnly 'com.facebook.infer.annotation:infer-annotation:+'
   implementation "com.google.zxing:core:3.2.1"
   implementation "com.drewnoakes:metadata-extractor:2.9.1"
@@ -63,6 +67,21 @@ dependencies {
   implementation "com.android.support:support-annotations:$supportLibVersion"
   implementation "com.android.support:support-v4:$supportLibVersion"
 
-  compile project(':usbCameraCommon')
-  compile project(':react-native-camera')
+  implementation("com.serenegiant:common:${DEFAULT_COMMONLIB_VERSION}") {
+		exclude module: 'support-v4'
+	}
+  implementation project(':usbCameraCommon')
+  implementation project(':libuvccamera')
+  implementation project(':react-native-camera')
+}
+
+ext {
+	supportLibVersion = DEFAULT_SUPPORT_LIBRARY_VERSION
+	commonLibVersion= DEFAULT_COMMONLIB_VERSION
+	versionBuildTool = DEFAULT_BUILD_TOOLS_VERSION
+	versionCompiler = DEFAULT_COMPILE_SDK_VERSION
+	versionTarget = DEFAULT_TARGET_SDK_VERSION
+	versionNameString = '1.0.0'
+	javaSourceCompatibility = JavaVersion.VERSION_1_7
+	javaTargetCompatibility = JavaVersion.VERSION_1_7
 }

@@ -47,12 +47,13 @@ android {
 
 repositories {
     maven { url 'http://raw.github.com/saki4510t/libcommon/master/repository/' }
+    google()
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile("com.serenegiant:common:${commonLibVersion}") {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation ("com.serenegiant:common:${commonLibVersion}") {
    		exclude module: 'support-v4'
    	}
-    compile project(':libuvccamera')
+    implementation project(':libuvccamera')
 }

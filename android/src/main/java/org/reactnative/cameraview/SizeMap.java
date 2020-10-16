@@ -16,7 +16,7 @@
 
 package org.reactnative.cameraview;
 
-import android.support.v4.util.ArrayMap;
+import androidx.collection.ArrayMap;
 import com.google.android.cameraview.AspectRatio;
 import com.google.android.cameraview.Size;
 

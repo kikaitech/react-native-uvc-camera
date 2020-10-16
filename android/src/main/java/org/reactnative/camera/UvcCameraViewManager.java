@@ -1,6 +1,6 @@
 package org.reactnative.camera;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.common.MapBuilder;
 import com.facebook.react.uimanager.ThemedReactContext;
@@ -62,11 +62,6 @@ public class UvcCameraViewManager extends ViewGroupManager<UvcCameraView> {
       builder.put(event.toString(), MapBuilder.of("registrationName", event.toString()));
     }
     return builder.build();
-  }
-
-  @ReactProp(name = "rotation")
-  public void setDisplayRotation(UvcCameraView view, int rotation) {
-    view.setDisplayRotation(rotation);
   }
 
   @ReactProp(name = "type")
